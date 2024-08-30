@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Blog Home</h1>
+  {% for post in posts %}
+    <div>
+      <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+      <p>By {{ post.author }} on {{ post.created_at }}</p>
+      <p>{{ post.content|slice:":200" }}...</p>
+      {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%; height: auto;">
+      {% endif %}
+    </div>
+  {% endfor %}
+{% endblock %}
